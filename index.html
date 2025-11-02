@@ -3,69 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>21 Things You Like To Do — Brainstorm</title>
+  <title>21 Things You Like To Do — Premium</title>
   <meta name="description" content="Premium minimalist app to collect 21 things you like to do — great ideas start here." />
 
-  <!-- ====== Styles ====== -->
+  <!-- Modern UI + Smooth Animations -->
   <style>
-    /* ---- Theme variables (auto switch based on prefers-color-scheme) ---- */
+    /* ---------- Color & Theme vars (auto light/dark fallback) ---------- */
     :root{
-      --bg: #0b0b0d;
-      --panel: rgba(255,255,255,0.04);
-      --muted: rgba(255,255,255,0.6);
-      --text: #fff;
-      --accent1: 147, 51, 234; /* purple */
-      --accent2: 255, 99, 132; /* pink */
+      --bg: #0b0e14;
+      --surface: rgba(255,255,255,0.03);
+      --muted: rgba(255,255,255,0.66);
+      --text: #ffffff;
+      --accent-a: 190, 129, 255; /* soft purple */
+      --accent-b: 109, 207, 255; /* soft aqua */
       --glass-border: rgba(255,255,255,0.06);
-      --pill-bg: rgba(255,255,255,0.06);
-      --faint: rgba(255,255,255,0.03);
+      --pill-bg: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.06);
+      --success: 96, 217, 178;
     }
-    @media (prefers-color-scheme: light) {
+    @media (prefers-color-scheme: light){
       :root{
-        --bg: #f7f7f8;
-        --panel: rgba(12,12,14,0.03);
-        --muted: rgba(12,12,14,0.6);
-        --text: #0b0b0d;
-        --accent1: 58, 83, 243; /* blue-ish for light theme */
-        --accent2: 0, 150, 136;
-        --glass-border: rgba(12,12,14,0.06);
-        --pill-bg: rgba(12,12,14,0.04);
-        --faint: rgba(12,12,14,0.02);
+        --bg: linear-gradient(180deg,#f6f8fb,#ffffff);
+        --surface: rgba(2,6,23,0.02);
+        --muted: #243240;
+        --text: #0b1220;
+        --accent-a: 88, 65, 224;
+        --accent-b: 0, 150, 136;
+        --glass-border: rgba(2,6,23,0.06);
+        --pill-bg: rgba(2,6,23,0.03);
+        --glass-strong: rgba(2,6,23,0.04);
+        --success: 0, 140, 100;
       }
     }
 
-    /* ---- Base ---- */
+    /* ---------- Base ---------- */
     html,body{height:100%}
     body{
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(var(--accent1),0.08), transparent 8%),
-                  radial-gradient(1000px 500px at 90% 90%, rgba(var(--accent2),0.06), transparent 10%),
-                  var(--bg);
+      background:
+        radial-gradient(800px 400px at 10% 8%, rgba(var(--accent-a),0.06), transparent 8%),
+        radial-gradient(700px 350px at 92% 92%, rgba(var(--accent-b),0.035), transparent 8%),
+        var(--bg);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:20px;
+      padding:28px;
       box-sizing:border-box;
     }
 
-    /* ---- Card ---- */
-    .wrap{
-      width:100%;
-      max-width:880px;
-      margin:0 auto;
-    }
+    /* ---------- Container Card ---------- */
+    .wrap{ width:100%; max-width:900px; margin:0 auto; }
     .card{
+      border-radius:20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid var(--glass-border);
-      border-radius:18px;
       padding:20px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      backdrop-filter: blur(8px) saturate(110%);
+      box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+      backdrop-filter: blur(10px) saturate(120%);
       overflow:hidden;
+      transform: translateZ(0);
     }
 
     header.app-header{
@@ -74,150 +74,130 @@
       justify-content:space-between;
       gap:12px;
     }
-    .title{
-      line-height:1;
-    }
-    .title h1{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.3px}
-    .title p{margin:2px 0 0 0;font-size:12px;color:var(--muted)}
+    .title h1{ margin:0; font-size:20px; font-weight:700; letter-spacing:-0.2px; }
+    .title p{ margin:4px 0 0 0; font-size:13px; color:var(--muted) }
 
-    .auth-box{display:flex;gap:10px;align-items:center}
+    .auth-box{ display:flex; gap:10px; align-items:center; }
+
     .btn{
       border:none;
-      background:linear-gradient(90deg, rgba(var(--accent1),0.12), rgba(var(--accent2),0.12));
+      background: linear-gradient(90deg, rgba(var(--accent-a),0.12), rgba(var(--accent-b),0.12));
       color:var(--text);
-      padding:10px 14px;
-      border-radius:10px;
+      padding:9px 14px;
+      border-radius:12px;
       cursor:pointer;
       font-weight:600;
       font-size:13px;
-      backdrop-filter: blur(6px);
-      transition:transform .12s ease, opacity .12s ease;
+      transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.35);
     }
-    .btn:active{transform:translateY(1px)}
-    .btn.ghost{ background:transparent; border:1px solid var(--glass-border); padding:8px 10px; font-weight:500 }
+    .btn:hover{ transform: translateY(-2px) }
+    .btn.ghost{
+      background: transparent;
+      border:1px solid var(--glass-border);
+      padding:8px 12px;
+      box-shadow:none;
+    }
 
-    /* ---- Login Screen ---- */
+    /* ---------- Views ---------- */
     .view{ display:none; padding-top:18px }
     .view.active{ display:block }
 
-    .login-center{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      padding:36px 8px;
-    }
-    .app-brand{
-      width:86px;height:86px;border-radius:20px;
-      background:linear-gradient(135deg, rgba(var(--accent1),0.12), rgba(var(--accent2),0.12));
-      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;
+    /* ---------- Login Screen ---------- */
+    .login-center{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:28px 8px; }
+    .brand{
+      width:96px;height:96px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(135deg, rgba(var(--accent-a),0.18), rgba(var(--accent-b),0.12));
       border:1px solid var(--glass-border);
-      box-shadow: 0 6px 22px rgba(2,6,23,0.5);
+      font-weight:800; font-size:20px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.5);
     }
-    .small{font-size:13px;color:var(--muted);text-align:center;max-width:420px}
+    .small{ font-size:14px; color:var(--muted); text-align:center; max-width:520px; line-height:1.4 }
 
-    /* ---- Main app layout ---- */
-    .main{
-      margin-top:16px;
-    }
+    /* ---------- Main App ---------- */
+    .main{ margin-top:18px; }
+
+    /* Tags area */
     .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:14px;
-      min-height:44px;
+      display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; min-height:52px;
     }
     .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:var(--pill-bg);
-      border:1px solid var(--glass-border);
-      font-size:13px;
-      max-width:100%;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-strong);
+      font-size:13px; color:var(--text);
+      transition: transform .12s ease, box-shadow .12s ease;
     }
-    .pill .xbtn{
-      background:transparent;border:none;color:var(--muted);cursor:pointer;font-weight:700;font-size:12px;
+    .pill:hover{ transform:translateY(-4px); box-shadow: 0 8px 18px rgba(2,6,23,0.35) }
+    .pill .xbtn{ background:transparent;border:none;color:var(--muted); cursor:pointer; font-weight:700; font-size:13px }
+
+    /* Center flicker / glass input */
+    .flicker-wrap{
+      position:relative; display:flex; align-items:center; justify-content:center; padding:26px 8px 6px;
+    }
+    .glass{
+      width:100%; max-width:760px; border-radius:16px; padding:18px 20px;
+      border: 1px solid var(--glass-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+      box-shadow: inset 0 6px 28px rgba(2,6,23,0.35);
+      display:flex; align-items:center; justify-content:center; position:relative;
+      overflow:hidden;
     }
 
-    /* ---- Flicker input ---- */
-    .flicker-wrap{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px 8px 12px;
-    }
-    .flicker-glow{
-      position:absolute;inset:0;margin:auto;width:100%;height:100%;
-      border-radius:14px;filter:blur(22px);opacity:0.35;
-      background:linear-gradient(90deg, rgba(var(--accent1),0.12), rgba(var(--accent2),0.08));
-      z-index:0; animation:flicker 3.6s ease-in-out infinite;
+    /* soft moving sheen */
+    .glass::before{
+      content:""; position:absolute; inset:-40% -30% auto -30%; height:240px; transform:skewX(-18deg);
+      background: linear-gradient(90deg, rgba(var(--accent-a),0.06), rgba(255,255,255,0.02), rgba(var(--accent-b),0.05));
+      filter: blur(30px); opacity:0.55; animation: sheen 6s linear infinite;
       pointer-events:none;
     }
-    @keyframes flicker{
-      0%{ transform: translateX(-10%); opacity:.22 }
-      50%{ transform: translateX(10%); opacity:.4 }
-      100%{ transform: translateX(-10%); opacity:.22 }
+    @keyframes sheen{ 0%{ transform:translateX(-30%) skewX(-18deg) } 100%{ transform:translateX(30%) skewX(-18deg) } }
+
+    /* The visible "display" for typed text */
+    .display{
+      font-size:18px; font-weight:600; color:var(--text); letter-spacing:0.2px;
+      display:flex; align-items:center; gap:6px; min-height:28px;
+      max-width:calc(100% - 48px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .display .muted-placeholder{ color:var(--muted); font-weight:600; opacity:0.9 }
+
+    /* custom caret (MAC style) */
+    .caret{
+      display:inline-block; width:2px; height:22px; background:var(--text);
+      border-radius:1px; margin-left:2px; opacity:1; transform-origin:center;
+      animation: blink 1s steps(1,end) infinite;
+    }
+    @keyframes blink{ 0%{ opacity:1 } 50%{ opacity:0 } 100%{ opacity:1 } }
+
+    /* The real input is visually hidden but accessible */
+    .hidden-input{
+      position:absolute; inset:0; width:100%; height:100%; opacity:0; border:none; background:transparent;
+      caret-color: transparent; /* hide native caret */
     }
 
-    .input-wrap{
-      position:relative; z-index:1; width:100%;
-      max-width:720px;
-      margin:0 auto;
-    }
-    .brain-input{
-      width:100%;
-      padding:18px 18px;
-      border-radius:14px;
-      border:1px solid var(--glass-border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      color:var(--text);
-      font-size:16px;
-      outline:none;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.45) inset;
-    }
-    .brain-input::placeholder{ color: var(--muted) }
+    .hint{ margin-top:8px; font-size:13px; color:var(--muted); text-align:center }
 
-    .hint{ font-size:12px;color:var(--muted); margin-top:8px; text-align:center }
-
-    /* ---- Submit / info ---- */
-    .controls{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:16px;
-      flex-wrap:wrap;
-    }
-    .controls .notes{ color:var(--muted); font-size:13px }
-
+    /* controls + submit */
+    .controls{ display:flex; gap:14px; align-items:center; justify-content:space-between; margin-top:18px; flex-wrap:wrap }
+    .submit-zone{ display:flex; gap:12px; align-items:center; }
+    .count-note{ font-size:13px; color:var(--muted) }
     .submit-btn{
-      padding:12px 18px;border-radius:12px;border:none;font-weight:700;cursor:pointer;
-      background:linear-gradient(90deg, rgba(var(--accent1),1), rgba(var(--accent2),1));
-      color:white; box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+      padding:12px 18px; border-radius:12px; border:none; font-weight:800; letter-spacing:0.3px;
+      font-size:14px; cursor:pointer;
+      color:white;
+      background: linear-gradient(90deg, rgba(var(--accent-a),1), rgba(var(--accent-b),1));
+      box-shadow: 0 12px 30px rgba(20,20,40,0.4);
+      transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
     }
-    .submit-btn.disabled{ opacity:0.5; cursor:not-allowed; filter:grayscale(.07) }
+    .submit-btn:hover{ transform: translateY(-3px) }
+    .submit-btn.disabled{ opacity:0.5; filter:grayscale(.03); cursor:not-allowed; transform:none; box-shadow:none }
 
     .status{ margin-top:12px; font-size:13px; color:var(--muted) }
 
-    /* ---- quotes slider ---- */
-    .quotes{
-      margin-top:18px;
-      overflow:hidden;
-      border-radius:12px;
-      padding:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
-      border:1px solid var(--glass-border);
-    }
-    .quote-track{ display:flex; flex-direction:column; gap:12px; transform:translateY(0); animation:slide 14s linear infinite; }
-    .quote-item{ font-style:italic; color:var(--muted); font-size:14px; min-height:20px; display:flex;align-items:center }
+    /* quotes */
+    .quotes{ margin-top:18px; overflow:hidden; border-radius:12px; padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008)); border:1px solid var(--glass-border) }
+    .quote-track{ display:flex; flex-direction:column; gap:12px; transform:translateY(0); animation: slide 14s linear infinite }
+    .quote-item{ font-style:italic; color:var(--muted); font-size:14px; min-height:20px; display:flex; align-items:center }
     @keyframes slide {
       0% { transform: translateY(0%); }
       24% { transform: translateY(0%); }
@@ -229,14 +209,15 @@
       100% { transform: translateY(-300%); }
     }
 
-    /* ---- Footer ---- */
     footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:12px }
 
-    /* ---- responsive ---- */
-    @media (max-width:640px){
+    /* responsive tweaks */
+    @media (max-width:700px){
       .card{ padding:16px; border-radius:14px }
-      .brain-input{ padding:16px; font-size:15px }
-      .title h1{ font-size:18px }
+      .brand{ width:72px; height:72px; font-size:18px; border-radius:14px }
+      .display{ font-size:16px }
+      .submit-btn{ width:100%; padding:12px }
+      .controls{ flex-direction:column; align-items:stretch }
     }
   </style>
 </head>
@@ -252,14 +233,15 @@
         </div>
 
         <div class="auth-box" id="authBox">
-          <!-- theme toggle + auth buttons will be injected by JS -->
-          <button class="btn ghost" id="themeToggle" title="Toggle theme (automatically follows device by default)">Theme</button>
+          <button class="btn ghost" id="themeToggle" title="Toggle theme">Theme</button>
+
           <div id="signedOutControls">
             <button class="btn" id="signInBtn">Sign in with Google</button>
           </div>
+
           <div id="signedInControls" style="display:none; align-items:center;">
             <div style="text-align:right; margin-right:8px;">
-              <div id="userName" style="font-weight:600; font-size:13px"></div>
+              <div id="userName" style="font-weight:700; font-size:13px"></div>
               <div id="userEmail" style="font-size:12px; color:var(--muted)"></div>
             </div>
             <button class="btn ghost" id="signOutBtn">Sign out</button>
@@ -267,54 +249,60 @@
         </div>
       </header>
 
-      <!-- Views -->
+      <!-- LOGIN VIEW -->
       <div id="loginView" class="view active" aria-hidden="false">
         <div class="login-center">
-          <div class="app-brand">21</div>
-          <div style="font-weight:600; font-size:16px">Premium Minimalist Brainstorm</div>
-          <div class="small">Log in with your Google account to start listing the things you love. Add exactly (or at least) 21 items to uncover patterns you can build businesses from.</div>
-          <div style="display:flex;gap:12px;margin-top:10px">
+          <div class="brand">21</div>
+          <div style="font-weight:700; font-size:18px">Premium Minimalist Brainstorm</div>
+          <div class="small">Sign in with Google to save your 21 things. Add as many as you want — submit once you have at least 21. This app helps you find patterns to build ideas/businesses.</div>
+          <div style="display:flex;gap:12px;margin-top:6px">
             <button class="btn" id="bigSignIn">Sign in with Google</button>
-            <button class="btn ghost" id="continueGuest">Continue as Guest (Read-only)</button>
+            <button class="btn ghost" id="continueGuest">Continue as Guest</button>
           </div>
         </div>
       </div>
 
+      <!-- MAIN VIEW -->
       <div id="mainView" class="view" aria-hidden="true">
         <div class="main">
 
-          <!-- Tags -->
+          <!-- tags appear here -->
           <div class="tags" id="tagsContainer" aria-live="polite" aria-label="List of tags"></div>
 
-          <!-- Flicker input -->
+          <!-- flicker area -->
           <div class="flicker-wrap">
-            <div class="flicker-glow" aria-hidden="true"></div>
-            <div class="input-wrap">
-              <form id="tagForm" onsubmit="return false;">
-                <input id="brainInput" class="brain-input" placeholder="Type one thing you enjoy — press Enter" autocomplete="off" />
-              </form>
-              <div class="hint">Add 21 items — suggestions reveal patterns. Backspace on empty removes last.</div>
+            <div class="glass" id="glassArea" role="textbox" aria-label="Type a thing you like">
+              <!-- visible display -->
+              <div class="display" id="displayText">
+                <span class="muted-placeholder" id="placeholderText">Type one thing you enjoy — press Enter</span>
+                <span class="caret" id="caret"></span>
+              </div>
+
+              <!-- hidden input receives keyboard input -->
+              <input id="hiddenInput" class="hidden-input" maxlength="120" aria-hidden="false" />
             </div>
           </div>
 
-          <!-- Controls -->
+          <div class="hint">Tip: press <strong>Enter</strong> to add. Press Backspace on empty to remove last. Tap the glass to focus typing.</div>
+
+          <!-- controls -->
           <div class="controls">
-            <div style="display:flex;gap:8px;align-items:center">
+            <div class="submit-zone">
               <button id="submitBtn" class="submit-btn disabled" aria-disabled="true">Submit my 21 things</button>
-              <div class="notes" id="countNote">0 / 21</div>
+              <div class="count-note" id="countNote">0 / 21</div>
             </div>
-            <div class="notes">Why 21? Diversity + depth — 21 prompts often reveal clusters and habits.</div>
+            <div class="notes" style="color:var(--muted)">Why 21? Depth & variety reveal patterns — the sweet spot for brainstorming.</div>
           </div>
 
           <div class="status" id="status"></div>
 
-          <!-- Quotes -->
+          <!-- motivational quotes -->
           <div class="quotes" aria-hidden="false">
             <div class="quote-track" id="quoteTrack">
               <div class="quote-item">“Small curiosities become big ideas.”</div>
               <div class="quote-item">“Ideas are seeds — plant 21 and see what grows.”</div>
+              <div class="quote-item">“Start where you are, build what you love.”</div>
               <div class="quote-item">“Keep it simple. Keep it human.”</div>
-              <div class="quote-item">“Build something you’d use every day.”</div>
             </div>
           </div>
 
@@ -322,59 +310,47 @@
       </div>
 
       <footer>
-        Built to be minimalist — keep your focus. Mobile-first, glassy, premium.
+        Built to be minimalist — keep your focus. Mobile-first, premium UX.
       </footer>
     </div>
   </div>
 
-  <!-- ====== Firebase (modular) ======
-       Replace FIREBASE_PLACEHOLDER below with your config.
-       Example:
-       const firebaseConfig = {
-         apiKey: "REPLACE_ME",
-         authDomain: "REPLACE_ME",
-         projectId: "REPLACE_ME",
-         storageBucket: "REPLACE_ME",
-         messagingSenderId: "REPLACE_ME",
-         appId: "REPLACE_ME"
-       };
-  ============================================================ -->
+  <!-- Firebase (modular) + App logic -->
   <script type="module">
-    // ---- Import Firebase modular SDK from Google's CDN ----
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    /* ---------------- Firebase SDK (modular) ---------------- */
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
     import {
       getAuth,
       GoogleAuthProvider,
       signInWithPopup,
       signOut as firebaseSignOut,
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
     import {
       getFirestore,
       doc,
       setDoc,
       getDoc,
       serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-    // ======= FIREBASE CONFIG - REPLACE THESE VALUES WITH YOUR PROJECT CONFIG =======
+    // ========== YOUR FIREBASE CONFIG (inserted as you provided) ==========
     const firebaseConfig = {
-    apiKey: "AIzaSyBote5TXq43n0GJkeNMkBAXIEneVaJ-sGw",
-    authDomain: "flickerapp-74019.firebaseapp.com",
-    projectId: "flickerapp-74019",
-    storageBucket: "flickerapp-74019.firebasestorage.app",
-    messagingSenderId: "665419405503",
-    appId: "1:665419405503:web:66d6548207f48a09874e0a"
+      apiKey: "AIzaSyBote5TXq43n0GJkeNMkBAXIEneVaJ-sGw",
+      authDomain: "flickerapp-74019.firebaseapp.com",
+      projectId: "flickerapp-74019",
+      storageBucket: "flickerapp-74019.firebasestorage.app",
+      messagingSenderId: "665419405503",
+      appId: "1:665419405503:web:66d6548207f48a09874e0a"
     };
-    // ==============================================================================
+    // ====================================================================
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
     const db = getFirestore(app);
 
-    // ---- DOM refs ----
+    /* ---------------- DOM Refs ---------------- */
     const loginView = document.getElementById('loginView');
     const mainView = document.getElementById('mainView');
     const signInBtn = document.getElementById('signInBtn');
@@ -387,23 +363,28 @@
     const userEmail = document.getElementById('userEmail');
 
     const tagsContainer = document.getElementById('tagsContainer');
-    const brainInput = document.getElementById('brainInput');
-    const tagForm = document.getElementById('tagForm');
+    const hiddenInput = document.getElementById('hiddenInput');
+    const displayText = document.getElementById('displayText');
+    const placeholderText = document.getElementById('placeholderText');
+    const caret = document.getElementById('caret');
+    const glassArea = document.getElementById('glassArea');
+
     const submitBtn = document.getElementById('submitBtn');
     const countNote = document.getElementById('countNote');
     const status = document.getElementById('status');
     const themeToggle = document.getElementById('themeToggle');
 
-    // ---- state ----
+    // state
     let currentUser = null;
     let tags = [];
-    const QUOTA_MAX = 100;
     const REQUIRED_COUNT = 21;
+    const MAX_ITEMS = 100;
+    let isGuest = false;
 
-    // ---- helper UI funcs ----
+    /* ------------- UI helpers ------------- */
     function showView(view){
       if(view === 'login'){
-        loginView.classList.add('active'); loginView.setAttribute('aria-hidden', 'false');
+        loginView.classList.add('active'); loginView.setAttribute('aria-hidden','false');
         mainView.classList.remove('active'); mainView.setAttribute('aria-hidden','true');
       } else {
         loginView.classList.remove('active'); loginView.setAttribute('aria-hidden','true');
@@ -411,16 +392,33 @@
       }
     }
 
+    function showStatus(msg, type='info', timeout=4200){
+      if(!msg){ status.innerText=''; status.style.display='none'; return; }
+      status.innerText = msg;
+      status.style.display = 'block';
+      if(type==='error') status.style.color = '#ff9b9b';
+      else if(type==='success') status.style.color = `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--success') || '96,217,178'})`;
+      else status.style.color = getComputedStyle(document.documentElement).getPropertyValue('--muted');
+      if(timeout) clearTimeout(status._t), status._t = setTimeout(()=> showStatus(null), timeout);
+    }
+
+    function sanitize(s){ return String(s).replace(/[<>]/g, ''); }
+
+    /* ------------- tags rendering ------------- */
     function renderTags(){
       tagsContainer.innerHTML = '';
       tags.forEach((t, i) => {
         const pill = document.createElement('div');
         pill.className = 'pill';
-        pill.title = t;
-        pill.innerHTML = `<span style="overflow:hidden;text-overflow:ellipsis;max-width:200px;display:inline-block">${sanitize(t)}</span>`;
+        const text = document.createElement('div');
+        text.style.maxWidth = '220px';
+        text.style.overflow = 'hidden';
+        text.style.textOverflow = 'ellipsis';
+        text.innerText = t;
+        pill.appendChild(text);
         const btn = document.createElement('button');
         btn.className = 'xbtn';
-        btn.setAttribute('aria-label', 'remove ' + t);
+        btn.setAttribute('aria-label','remove ' + t);
         btn.innerText = '✕';
         btn.onclick = () => { removeTag(i); };
         pill.appendChild(btn);
@@ -433,62 +431,101 @@
     function addTag(raw){
       const txt = raw.trim();
       if(!txt) return;
-      if(tags.length >= QUOTA_MAX){
-        showStatus('Too many items (max ' + QUOTA_MAX + ').', 'error');
-        return;
-      }
-      if(tags.some(t=>t.toLowerCase() === txt.toLowerCase())){
-        showStatus('Already added.', 'info');
-        return;
-      }
-      tags.push(txt);
+      if(tags.length >= MAX_ITEMS){ showStatus('Too many items (max '+MAX_ITEMS+').', 'error'); return; }
+      if(tags.some(t=>t.toLowerCase()===txt.toLowerCase())){ showStatus('Already added.', 'info'); return; }
+      tags.push(sanitize(txt));
       renderTags();
-      brainInput.value = '';
+      hiddenInput.value = '';
+      updateDisplay();
+      hiddenInput.focus();
       showStatus(null);
+      // micro-feedback
+      setTimeout(()=> {
+        // small pulse on the last pill
+        const last = tagsContainer.lastElementChild;
+        if(last) { last.animate([{transform:'scale(0.96)'},{transform:'scale(1)'}],{ duration:160 }); }
+      }, 60);
     }
 
-    function removeTag(index){
-      tags.splice(index,1);
+    function removeTag(i){
+      tags.splice(i,1);
       renderTags();
+      showStatus(null);
+      hiddenInput.focus();
     }
 
     function updateSubmitState(){
-      const disabled = (!currentUser && !isGuest) || tags.length < REQUIRED_COUNT;
+      const disabled = (tags.length < REQUIRED_COUNT) || (!currentUser && !isGuest);
       if(disabled){
-        submitBtn.classList.add('disabled');
-        submitBtn.setAttribute('aria-disabled','true');
+        submitBtn.classList.add('disabled'); submitBtn.setAttribute('aria-disabled','true');
       } else {
-        submitBtn.classList.remove('disabled');
-        submitBtn.removeAttribute('aria-disabled');
+        submitBtn.classList.remove('disabled'); submitBtn.removeAttribute('aria-disabled');
       }
     }
 
-    function showStatus(msg, type='ok'){
-      status.innerText = msg || '';
-      if(!msg){ status.style.display = 'none'; return; }
-      status.style.display = 'block';
-      status.style.color = (type === 'error') ? '#ff9494' : (type === 'info' ? '#9fdbff' : 'var(--muted)');
+    /* ------------- display & caret handling ------------- */
+    function updateDisplay(){
+      const v = hiddenInput.value;
+      if(!v && tags.length===0){
+        placeholderText.style.display = 'inline';
+      } else {
+        placeholderText.style.display = v ? 'none' : (tags.length? 'none' : 'inline');
+      }
+      // set text node inside display (we keep placeholder separate)
+      // remove any previous typed-span
+      let typed = displayText.querySelector('.typed');
+      if(!typed){
+        typed = document.createElement('span'); typed.className = 'typed';
+        displayText.insertBefore(typed, caret);
+      }
+      typed.textContent = v;
+      // auto-scroll overflow: move typed element left if too long
+      // We'll keep it simple: allow overflow-hidden; caret stays at end.
     }
 
-    // sanitize very basic (we will not be rendering html from tags except as text)
-    function sanitize(s){
-      return String(s).replace(/[<>]/g, '');
+    // Focus behavior: clicking glass focuses the hidden input
+    glassArea.addEventListener('click', ()=> {
+      hiddenInput.focus();
+      placeCaretAtEnd();
+    });
+
+    function placeCaretAtEnd(){
+      // ensure caret visible by focusing input
+      hiddenInput.focus();
     }
 
-    // ---- Auth handling ----
-    let isGuest = false;
+    // Keep caret visible on mobile when keyboard toggles:
+    hiddenInput.addEventListener('focus', ()=> { caret.style.opacity = '1'; });
+    hiddenInput.addEventListener('blur', ()=> { caret.style.opacity = '0.5'; });
 
+    hiddenInput.addEventListener('input', ()=>{
+      updateDisplay();
+    });
+
+    // Key handling: Enter -> add tag, Backspace on empty -> remove last
+    hiddenInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        addTag(hiddenInput.value);
+      } else if(e.key === 'Backspace' && hiddenInput.value === ''){
+        if(tags.length) removeTag(tags.length - 1);
+      }
+    });
+
+    // Initialize
+    updateDisplay();
+
+    /* ------------- Auth ------------- */
     async function doSignIn(){
-      try{
+      try {
         await signInWithPopup(auth, provider);
       } catch(e){
         console.error(e);
-        showStatus('Sign-in failed. Check popup blocker or console.', 'error');
+        showStatus('Sign-in failed (popup or network).', 'error');
       }
     }
-
     async function doSignOut(){
-      try{
+      try {
         await firebaseSignOut(auth);
         currentUser = null;
         signedInControls.style.display = 'none';
@@ -499,7 +536,6 @@
       } catch(e){ console.error(e) }
     }
 
-    // On auth state change -> show main view, fetch saved interests
     onAuthStateChanged(auth, async (user) => {
       if(user){
         currentUser = user;
@@ -511,12 +547,10 @@
         showView('main');
         await fetchExisting(user.uid);
       } else {
-        // not signed in
         currentUser = null;
         signedInControls.style.display = 'none';
         signedOutControls.style.display = '';
         if(isGuest){
-          // guest can view main but no save
           showView('main');
           userName.innerText = 'Guest';
           userEmail.innerText = '';
@@ -527,56 +561,47 @@
       updateSubmitState();
     });
 
-    // continue as guest (read-only)
-    continueGuest.addEventListener('click', () => {
+    // guest
+    continueGuest.addEventListener('click', ()=>{
       isGuest = true;
+      tags = []; renderTags();
       showView('main');
-      signedInControls.style.display = 'none';
-      signedOutControls.style.display = '';
       userName.innerText = 'Guest';
       userEmail.innerText = '';
-      tags = []; renderTags();
     });
 
-    // wire auth buttons
+    // buttons
     signInBtn.addEventListener('click', doSignIn);
     bigSignIn.addEventListener('click', doSignIn);
     signOutBtn.addEventListener('click', doSignOut);
 
-    // ---- Firestore interactions ----
+    /* ------------- Firestore read/write ------------- */
     async function fetchExisting(uid){
-      try{
+      try {
         const ref = doc(db, 'user_interests', uid);
         const snap = await getDoc(ref);
         if(snap.exists()){
           const data = snap.data();
           if(Array.isArray(data.items)){
-            tags = data.items.slice(0, QUOTA_MAX);
+            tags = data.items.slice(0, MAX_ITEMS);
             renderTags();
-            showStatus('Loaded your saved list (you can update it).');
+            showStatus('Loaded your saved list. You can update it and submit again.', 'info', 3000);
           }
-        } else {
-          // no data
         }
       } catch(e){
         console.error('fetchExisting', e);
-        showStatus('Could not fetch saved data (check console).', 'error');
+        showStatus('Unable to fetch saved data (check console).', 'error');
       }
     }
 
     async function submitToFirestore(){
-      if(!currentUser && !isGuest) return showStatus('Sign in first to save.', 'error');
-      if(tags.length < REQUIRED_COUNT) return showStatus('Add at least 21 items before submitting.', 'error');
-
-      // if guest, disallow saving
-      if(isGuest) {
-        showStatus('Guest mode: cannot save. Sign in to persist your list.', 'info');
-        return;
-      }
+      if(!currentUser && !isGuest) { showStatus('Sign in to save your list.', 'error'); return; }
+      if(tags.length < REQUIRED_COUNT) { showStatus('Add at least 21 items to submit.', 'error'); return; }
+      if(isGuest) { showStatus('Guest mode — sign in to persist your list.', 'info'); return; }
 
       submitBtn.disabled = true;
       submitBtn.innerText = 'Saving...';
-      try{
+      try {
         const ref = doc(db, 'user_interests', currentUser.uid);
         await setDoc(ref, {
           uid: currentUser.uid,
@@ -584,7 +609,7 @@
           items: tags,
           updatedAt: serverTimestamp()
         });
-        showStatus('Saved successfully! 🎉');
+        showStatus('Saved successfully! 🎉', 'success', 4000);
       } catch(e){
         console.error('submit', e);
         showStatus('Save failed. Check console and Firestore rules.', 'error');
@@ -596,87 +621,60 @@
 
     submitBtn.addEventListener('click', submitToFirestore);
 
-    // ---- input interactions ----
-    brainInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){
-        e.preventDefault();
-        addTag(brainInput.value);
-      } else if(e.key === 'Backspace' && brainInput.value === '' && tags.length){
-        // quick remove last
-        removeTag(tags.length -1);
-      }
-    });
-
-    tagForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      addTag(brainInput.value);
-    });
-
-    // ---- theme handling (auto + manual override) ----
+    /* ------------- Theme toggle ------------- */
+    let manualTheme = null;
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    let manualTheme = null; // 'dark' | 'light' | null
-
     function applyTheme(){
       const root = document.documentElement;
       const theme = manualTheme || (prefersDark ? 'dark' : 'light');
       if(theme === 'dark'){
-        root.style.setProperty('--bg', '#0b0b0d');
+        root.style.setProperty('--bg', '#0b0e14');
       } else {
-        root.style.setProperty('--bg', '#f7f7f8');
+        root.style.setProperty('--bg', 'linear-gradient(180deg,#f6f8fb,#ffffff)');
       }
-      // update toggle label
       themeToggle.innerText = manualTheme ? (manualTheme === 'dark' ? 'Dark' : 'Light') : 'Theme';
     }
-
-    themeToggle.addEventListener('click', () => {
-      if(!manualTheme){
-        manualTheme = prefersDark ? 'light' : 'dark';
-      } else {
-        manualTheme = (manualTheme === 'dark') ? 'light' : 'dark';
-      }
+    themeToggle.addEventListener('click', ()=>{
+      manualTheme = manualTheme ? (manualTheme==='dark' ? 'light' : 'dark') : (prefersDark ? 'light' : 'dark');
       applyTheme();
     });
-
     applyTheme();
 
-    // ---- misc helpers ----
-    function showInitNote(){
-      // small first-load hint
-      status.innerText = '';
-      setTimeout(()=> {
-        showStatus('Tip: press Enter to add; remove with ✕. Add 21 items to enable submit.', 'info');
-      }, 700);
-      setTimeout(()=> { showStatus(null) }, 4200);
-    }
-    showInitNote();
-
-    // ---- basic accessibility: focus input when main view activated ----
-    const observer = new MutationObserver(() => {
-      if(mainView.classList.contains('active')){
-        setTimeout(()=> brainInput.focus(), 220);
-      }
+    /* ------------- initial hints & focus ------------- */
+    setTimeout(()=> showStatus('Press Enter to add; remove with ✕. Add 21 items to enable submit.', 'info', 2400), 600);
+    // focus input when main view appears
+    const observer = new MutationObserver(()=> {
+      if(mainView.classList.contains('active')) setTimeout(()=> hiddenInput.focus(), 180);
     });
     observer.observe(mainView, { attributes:true, attributeFilter:['class'] });
 
-    // ---- end ----
+    // small accessibility: allow keyboard to focus hiddenInput when pressing '/'
+    window.addEventListener('keydown', (e)=> {
+      if(e.key === '/' && document.activeElement !== hiddenInput){
+        e.preventDefault();
+        hiddenInput.focus();
+      }
+    });
   </script>
 
-  <!-- ====== Notes & Next Steps for you ======
-    1) Replace the firebaseConfig object above with your project's config (from Firebase console).
-    2) In Firebase Console enable:
-       - Authentication > Sign-in method > Google
-       - Firestore Database > create database (start in test mode for quick dev; set rules before production)
-    3) Recommended Firestore security rules (example, restrict writes to authenticated user):
-       service cloud.firestore {
-         match /databases/{database}/documents {
-           match /user_interests/{userId} {
-             allow read: if true;
-             allow write: if request.auth != null && request.auth.uid == userId;
-           }
-         }
-       }
-    4) Host anywhere (Github Pages, Vercel, Netlify) — it's pure static HTML/CSS/JS.
-    5) If you want: I can convert this into a ready-to-deploy repo (package.json, deploy settings) or add export / CSV features.
-  ======================================================================== -->
+  <!-- Firestore Security & Notes (copy-ready) -->
+  <!--
+    Recommended Firestore rules before production:
+
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /user_interests/{userId} {
+          allow read: if true; // or restrict as needed
+          allow write: if request.auth != null && request.auth.uid == userId;
+        }
+      }
+    }
+
+    Steps:
+    1) Ensure Google sign-in enabled in Firebase Console > Authentication > Sign-in method.
+    2) Create Firestore DB (start in test mode while developing; switch to rules above before production).
+    3) Host this index.html on any static host (Vercel/Netlify/GitHub Pages).
+  -->
+
 </body>
 </html>
